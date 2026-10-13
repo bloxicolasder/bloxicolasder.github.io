@@ -5,192 +5,429 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Личное дело №102 — Еремин А. В.</title>
 <style>
+/* M.W.A. dossier — oxblood, graphite, warm white. */
+:root {
+  color-scheme: dark;
+  --bg: #100c0e;
+  --surface: #191214;
+  --text: #dfd6d5;
+  --muted: #ac9398;
+  --line: #3a252b;
+  --red: #df3b48;
+  --red-light: #f57880;
+  --mono: Consolas, "Courier New", monospace;
+  --display: Bahnschrift, "Arial Narrow", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 36px; }
 body {
   margin: 0;
-  background: #141013;
-  color: #ddd4d1;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 16px;
-  line-height: 1.65;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.8 "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 900px;
+  z-index: -1;
+  background: radial-gradient(ellipse at 87% 12%, #46131d70, transparent 60%);
+  pointer-events: none;
+}
+::selection { background: #8a2636; color: #fff; }
 .page {
-  max-width: 780px;
+  position: relative;
+  max-width: 1220px;
+  padding: 38px 56px 44px;
   margin: 0 auto;
-  padding: 44px 24px 70px;
+  border-left: 1px solid #362027;
+  border-right: 1px solid #362027;
 }
-
-.top {
-  border-bottom: 2px solid #b4322c;
-  padding-bottom: 18px;
-  margin-bottom: 30px;
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #642631;
 }
-.top .label {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
+.label, .alias, .secret, .sign, th, .trigger, .head, .year, .foot {
+  font-family: var(--mono);
+}
+.label {
+  font-size: 11px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: #9a8c89;
-  margin-bottom: 10px;
+  color: #c3a1a8;
+}
+.secret {
+  margin: 0;
+  padding: 6px 12px 5px;
+  border: 1px solid #aa3343;
+  background: #521924;
+  color: #f8919b;
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  line-height: 1.4;
+}
+.cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 60px;
+  padding: 52px 0 48px;
+  border-bottom: 1px solid #642631;
+}
+.top {
+  grid-column: 1;
+  border: 0;
+  margin: 0;
+  padding: 5px 0 0;
 }
 h1 {
   margin: 0;
-  font-size: 34px;
-  font-weight: normal;
-  letter-spacing: 0.5px;
+  color: #f3e9e8;
+  font-family: var(--display);
+  font-size: 37px;
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.7px;
+}
+h1 .surname {
+  display: block;
+  margin-left: -4px;
+  margin-bottom: 10px;
+  color: #f4dddd;
+  font-size: clamp(64px, 7vw, 100px);
+  font-weight: 650;
+  line-height: .95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
 }
 .top .alias {
-  margin-top: 8px;
-  color: #a4bcb0;
-  font-style: italic;
-}
-.secret {
-  display: inline-block;
-  margin-top: 16px;
-  border: 1px solid #b4322c;
-  color: #b4322c;
-  font-family: Consolas, "Courier New", monospace;
+  margin-top: 23px;
   font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  padding: 4px 10px;
+  letter-spacing: .3px;
+  font-style: normal;
+  color: var(--red-light);
 }
-
+.intro {
+  grid-column: 1;
+  max-width: 620px;
+  margin: 32px 0 29px;
+  color: #bba9ad;
+  font-size: 14px;
+  line-height: 1.85;
+}
 .portrait {
-  float: right;
-  width: 190px;
-  margin: 0 0 20px 26px;
-  border: 1px solid #38292c;
-  padding: 6px;
-  background: #1b1517;
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: stretch;
+  float: none;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #6b2936;
+  background: #22131a;
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+}
+.portrait::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--red);
+  z-index: 1;
 }
 .portrait img {
   display: block;
   width: 100%;
+  min-height: 0;
+  flex: 1;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: contrast(1.08);
 }
 .portrait .sign {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 11px;
-  color: #8c807d;
-  text-align: center;
-  padding-top: 6px;
+  flex-shrink: 0;
+  padding: 13px 17px;
+  border-top: 1px solid #5b2632;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: .8px;
+  color: #c29aab;
+  background: #28151c;
 }
-
-h2 {
-  font-size: 21px;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-  margin: 42px 0 14px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid #38292c;
-}
-h2 .idx {
-  color: #b4322c;
-  margin-right: 10px;
-}
-h3 {
-  font-size: 17px;
-  font-weight: bold;
-  margin: 26px 0 6px;
-}
-p { margin: 0 0 14px; }
-
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 10px;
+  margin: 0;
+}
+.identity { grid-column: 1; align-self: end; }
+th, td {
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  text-align: left;
 }
 th {
-  width: 38%;
-  text-align: left;
-  vertical-align: top;
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
+  width: 30%;
+  padding-right: 30px;
   font-weight: normal;
-  letter-spacing: 0.6px;
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: #9a8c89;
-  padding: 9px 14px 9px 0;
-  border-bottom: 1px solid #241b1d;
+  color: var(--muted);
 }
-td {
-  vertical-align: top;
-  padding: 9px 0;
-  border-bottom: 1px solid #241b1d;
+td { font-size: 15px; line-height: 1.75; }
+.identity th { width: 33%; padding-right: 18px; font-size: 9px; letter-spacing: .6px; }
+.identity td { font-size: 12px; line-height: 1.65; }
+.identity th, .identity td { padding-top: 11px; padding-bottom: 11px; }
+.identity tr:last-child th, .identity tr:last-child td { border-bottom: 0; }
+td.accent { color: var(--red-light); }
+.chapter { padding-top: 56px; }
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 23px;
+  margin: 0 0 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #6a2b38;
+  font-family: var(--display);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -.3px;
+  color: #ede0e1;
 }
-td.accent { color: #d05a52; }
-
-.rate td { font-family: Consolas, "Courier New", monospace; }
-.rate th { width: 55%; }
-
-.note {
-  border-left: 3px solid #b4322c;
-  background: #1b1517;
-  padding: 14px 18px;
-  margin: 26px 0;
+h2 .idx {
+  flex: 0 0 60px;
+  margin: 0;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 20px;
+  letter-spacing: -1px;
 }
-.note .head {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #b4322c;
-  margin-bottom: 8px;
+p { margin: 0 0 20px; }
+.section-lead {
+  max-width: 720px;
+  color: #bfaeb3;
+  font-size: 15px;
+  margin-bottom: 27px;
 }
-.note p { margin: 0; }
-
+.mods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+}
+.mod {
+  padding: 22px 0 12px;
+  border-top: 1px solid var(--line);
+}
+h3 {
+  margin: 0 0 12px;
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #efdddd;
+}
+.mod p { color: #bcaeb1; font-size: 14px; line-height: 1.85; }
+.performance {
+  margin-top: 17px;
+  padding: 27px 30px 20px;
+  border: 1px solid #50252f;
+  background: #21141a;
+}
+.performance h3 { font-size: 17px; margin-bottom: 8px; }
+.rate th { width: 55%; padding-right: 36px; }
+.rate td {
+  width: 45%;
+  font: 13px/1.5 var(--mono);
+  color: #e4b7bf;
+  padding-bottom: 15px;
+}
+.rate td::after {
+  content: "";
+  display: block;
+  height: 3px;
+  margin-top: 10px;
+  background: linear-gradient(to right, #c84557 var(--score), #48212b var(--score));
+}
+.rate tr:last-child th, .rate tr:last-child td { border: 0; }
 .ego {
-  margin-bottom: 22px;
-  padding-left: 16px;
-  border-left: 1px solid #38292c;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  column-gap: 38px;
+  margin: 0;
+  padding: 25px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
 }
 .ego .name {
-  font-size: 18px;
-  margin-bottom: 2px;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 9px;
+  color: #e9d8db;
 }
 .ego .trigger {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  color: #9a8c89;
-  margin-bottom: 8px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
 }
+.ego p { margin: 0; font-size: 14px; color: #c5b6bb; }
+.ego--danger .name { color: var(--red-light); }
 .hidden {
-  background: #ddd4d1;
-  color: #ddd4d1;
+  background: #e0c8ce;
+  color: transparent;
+  padding: 0 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: color .15s, background .15s;
 }
-
-.year {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  color: #b4322c;
-  letter-spacing: 1px;
+.hidden:hover, .hidden:focus-visible { background: #642331; color: #fff1f3; }
+.hidden:focus-visible { outline: 2px solid var(--red-light); outline-offset: 3px; }
+.note {
+  position: relative;
+  border-left: 3px solid var(--red);
+  background: #2b151c;
+  padding: 24px 28px;
+  margin: 12px 0 0;
 }
-
+.note .head {
+  font-size: 10px;
+  color: #f88998;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+.note p { margin: 0; font-size: 14px; color: #d4b8c0; }
+.history-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 38px;
+  border-bottom: 1px solid var(--line);
+  padding: 27px 0;
+}
+.history-item:first-of-type { padding-top: 4px; }
+.history-item h3 { display: flex; align-items: baseline; gap: 19px; font-size: 18px; }
+.year { color: var(--red); font-size: 12px; letter-spacing: 0; }
+.history-item p { margin: 0; color: #bfb0b5; font-size: 14px; line-height: 1.9; }
 .foot {
-  margin-top: 55px;
-  padding-top: 16px;
-  border-top: 1px solid #38292c;
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  color: #776c6a;
+  margin: 50px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid #642631;
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: .4px;
+  color: #b4919c;
 }
-
-@media (max-width: 620px) {
-  .page { padding: 28px 16px 50px; }
+@media (max-width: 1000px) {
+  .page { padding: 30px 36px 35px; }
+  .cover { grid-template-columns: minmax(0, 1fr) 280px; column-gap: 35px; }
+  h1 { font-size: 29px; }
+  h1 .surname { font-size: 78px; }
+  .intro { font-size: 13px; }
+  .identity th { width: 35%; font-size: 9px; }
+  .identity td { font-size: 11px; }
+  .ego, .history-item { grid-template-columns: 210px minmax(0, 1fr); column-gap: 28px; }
+}
+@media (max-width: 720px) {
+  .page { padding: 24px 22px 30px; border: 0; }
+  .masthead { gap: 12px; padding-bottom: 18px; }
+  .label { font-size: 9px; letter-spacing: .6px; }
+  .secret { padding: 5px 7px; font-size: 8px; letter-spacing: 1.2px; }
+  .cover { grid-template-columns: minmax(0, 1fr) 36%; column-gap: 20px; padding: 32px 0; }
+  .top { align-self: center; padding: 0; }
+  h1 { font-size: 22px; line-height: 1.25; }
+  h1 .surname { font-size: clamp(35px, 9.7vw, 67px); letter-spacing: -1.5px; margin-left: -1px; margin-bottom: 9px; }
+  .top .alias { font-size: 10px; line-height: 1.7; margin-top: 15px; }
+  .portrait { grid-row: 1; align-self: start; }
+  .portrait img { aspect-ratio: 2 / 3; }
+  .portrait .sign { padding: 8px; font-size: 8px; letter-spacing: 0; text-align: center; }
+  .intro { grid-column: 1 / -1; margin: 25px 0 19px; font-size: 13px; }
+  .identity { grid-column: 1 / -1; }
+  .identity th { width: 32%; font-size: 9px; }
+  .identity td { font-size: 12px; }
+  th, td { display: table-cell; }
+  th { width: 32%; font-size: 9px; padding-right: 20px; }
+  td { font-size: 14px; }
+  .chapter { padding-top: 37px; }
+  h2 { font-size: 23px; gap: 13px; padding-bottom: 15px; margin-bottom: 22px; }
+  h2 .idx { flex-basis: 38px; font-size: 16px; }
+  .mods { grid-template-columns: 1fr; }
+  .mod { padding-top: 18px; padding-bottom: 4px; }
+  h3 { font-size: 18px; }
+  .performance { padding: 20px 18px 12px; margin-top: 13px; }
+  .rate th { width: 58%; padding-right: 20px; letter-spacing: .6px; }
+  .rate td { width: 42%; font-size: 12px; }
+  .ego, .history-item { grid-template-columns: 1fr; gap: 17px; padding: 23px 0; }
+  .ego .name { font-size: 22px; margin-bottom: 5px; }
+  .ego .trigger { max-width: 310px; }
+  .note { padding: 20px 19px; }
+  .note .head { font-size: 9px; letter-spacing: 1px; }
+  .history-item { gap: 8px; }
+  .history-item h3 { margin-bottom: 5px; }
+  .foot { margin-top: 34px; font-size: 9px; }
+}
+@media (max-width: 390px) {
+  .page { padding-left: 18px; padding-right: 18px; }
+  .cover { column-gap: 14px; }
+  h1 { font-size: 19px; }
+  .identity th { width: 35%; }
+  th { padding-right: 16px; overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hidden { transition: none; }
+}
+@media print {
+  :root { color-scheme: light; --text: #211418; --muted: #604d54; --line: #bdaab0; }
+  body { background: #fff; color: #211418; font-size: 11px; }
+  body::before { display: none; }
+  .page { max-width: none; padding: 0; border: 0; }
+  .cover { grid-template-columns: 1fr 190px; gap: 25px; padding-top: 25px; }
+  h1, h1 .surname, h2, h3 { color: #351923; }
   h1 { font-size: 26px; }
-  .portrait { float: none; width: 170px; margin: 0 0 20px; }
-  th { width: auto; display: block; border: 0; padding-bottom: 0; }
-  td { display: block; padding-top: 2px; }
+  h1 .surname { font-size: 60px; }
+  .intro, .mod p, .ego p, .history-item p { color: #493b40; }
+  .chapter { padding-top: 28px; }
+  h2 { break-after: avoid; }
+  .mod, .ego, .history-item, .note, .performance { break-inside: avoid; }
+  .note, .performance { background: #f4ebee; }
+  .note p, .rate td { color: #522631; }
+  .hidden { background: #211418; color: transparent; }
+  .portrait img { filter: none; }
 }
 </style>
 </head>
 <body>
 <div class="page">
 
-<div class="top">
+<div class="masthead">
   <div class="label">Личное дело № 102 &nbsp;/&nbsp; M.W.A.</div>
-  <h1>Еремин Артем Вячеславович</h1>
-  <div class="alias">позывной: Блокси, Блокс</div>
   <div class="secret">Секретно</div>
+</div>
+
+<header class="cover">
+<div class="top">
+  <h1><span class="surname">Еремин </span>Артем Вячеславович</h1>
+  <div class="alias">позывной: Блокси, Блокс</div>
 </div>
 
 <div class="portrait">
@@ -198,21 +435,25 @@ td.accent { color: #d05a52; }
   <div class="sign">снимок от 12.04</div>
 </div>
 
-<p>Настоящий документ содержит систематизированные клинические, биографические и тактические
+<p class="intro">Настоящий документ содержит систематизированные клинические, биографические и тактические
 сведения, собранные из полевых рапортов, материалов. Документ классифицирован и верифицирован.
 Любое несанкционированное копирование преследуется.</p>
 
-<table>
-  <tr><th>Идентификатор</th><td>сотрудник M.W.A. № 102, Support / Combat</td></tr>
+<table class="identity">
+  <tbody><tr><th>Идентификатор</th><td>сотрудник M.W.A. № 102, Support / Combat</td></tr>
   <tr><th>Принадлежность</th><td>M.W.A. (Manufacturing of Weapons and Armaments)</td></tr>
   <tr><th>Уровень допуска</th><td class="accent">1+, действующий боец</td></tr>
   <tr><th>Довольствие</th><td>оклад $150 000, капитал свыше $10 000 000 (унаследован)</td></tr>
-</table>
+</tbody></table>
 
-<h2><span class="idx">I.</span>Физические и биохимические данные</h2>
+</header>
+
+<main>
+<section class="chapter" aria-labelledby="physical-title">
+<h2 id="physical-title"><span class="idx">I.</span>Физические и биохимические данные</h2>
 
 <table>
-  <tr><th>Возраст</th><td>43 года</td></tr>
+  <tbody><tr><th>Возраст</th><td>43 года</td></tr>
   <tr><th>Гражданство</th><td>Германия, Россия (двойное)</td></tr>
   <tr><th>Рост</th><td>189 см</td></tr>
   <tr><th>Вес</th><td>149 кг, избыточная масса компенсируется экзоскелетом</td></tr>
@@ -222,64 +463,87 @@ td.accent { color: #d05a52; }
       Наследственный капитал получен по завещательному праву</td></tr>
   <tr><th>Особые приметы</th><td>гетерохромия, левый глаз серый. Рубцы кибернетической
       стыковки на правой стороне лица, шеи и грудной клетки</td></tr>
-</table>
+</tbody></table>
 
-<h2><span class="idx">II.</span>Кибернетические модификации</h2>
+</section>
 
-<p>После инцидента № 09478 большая часть повреждённых тканей заменена
+<section class="chapter" aria-labelledby="cyber-title">
+<h2 id="cyber-title"><span class="idx">II.</span>Кибернетические модификации</h2>
+
+<p class="section-lead">После инцидента № 09478 большая часть повреждённых тканей заменена
 кибернетическими узлами.</p>
 
+<div class="mods">
+<div class="mod">
 <h3>1. Протез правого глаза</h3>
 <p>Био-имплант с цифровым интерфейсом прицеливания и ночным видением.</p>
+</div>
 
+<div class="mod">
 <h3>2. Протез правой руки</h3>
 <p>Промышленно-тактический манипулятор повышенной прочности, рассчитанный на перегрузки.</p>
+</div>
 
+<div class="mod">
 <h3>3. Тяжёлый экзоскелет закрытого типа</h3>
 <p>Герметичный бронекостюм M.W.A. Даёт полную автономность в зонах РХБЗ и биоактивного
 заражения, снимает нагрузку от веса бронепластин и кратно увеличивает грузоподъёмность.</p>
+</div>
 
+<div class="mod">
 <h3>4. Желудок «Cerberus Mk. I»</h3>
 <p>Кибернетический желудок, способный перерабатывать практически любую органическую
 материю: древесину, сырое мясо, человеческую плоть и прочие биологические материалы.
 Нейтрализует большую часть токсинов и значительно ускоряет расщепление.</p>
+</div>
+</div>
 
+<div class="performance">
 <h3>Оценка по результатам испытаний</h3>
 
 <table class="rate">
-  <tr><th>Интеллект</th><td>10 из 10</td></tr>
-  <tr><th>Физическая сила (в экзоскелете)</th><td>9 из 10</td></tr>
-  <tr><th>Стрелковая подготовка</th><td>9 из 10</td></tr>
-  <tr><th>Скорость (без имплантов)</th><td>7 из 10</td></tr>
-  <tr><th>Общая эффективность</th><td class="accent">8,75 из 10</td></tr>
-</table>
+  <tbody><tr><th>Интеллект</th><td style="--score: 100%">10 из 10</td></tr>
+  <tr><th>Физическая сила (в экзоскелете)</th><td style="--score: 90%">9 из 10</td></tr>
+  <tr><th>Стрелковая подготовка</th><td style="--score: 90%">9 из 10</td></tr>
+  <tr><th>Скорость (без имплантов)</th><td style="--score: 70%">7 из 10</td></tr>
+  <tr><th>Общая эффективность</th><td class="accent" style="--score: 87.5%">8,75 из 10</td></tr>
+</tbody></table>
+</div>
+</section>
 
-<h2><span class="idx">III.</span>Психологический профиль</h2>
+<section class="chapter" aria-labelledby="psych-title">
+<h2 id="psych-title"><span class="idx">III.</span>Психологический профиль</h2>
 
-<p>Субъект страдает диссоциативным расстройством идентичности. Зафиксированы три
+<p class="section-lead">Субъект страдает диссоциативным расстройством идентичности. Зафиксированы три
 изолированных эго-состояния.</p>
 
 <div class="ego">
+  <div>
   <div class="name">Проводник</div>
   <div class="trigger">основное состояние, около 99% времени</div>
+  </div>
   <p>Расчётливый, хладнокровный учёный. Полностью контролирует свои действия.</p>
 </div>
 
 <div class="ego">
+  <div>
   <div class="name">Истязатель</div>
   <div class="trigger">триггер: вид крови, физические страдания</div>
+  </div>
   <p>Теряет болевую чувствительность, физическая сила возрастает за счёт выброса
   адреналина. Проявляет садистические наклонности к нарушителям, дезертирам и рейдерам.
   Доводит ликвидацию цели до конца, не оставляя выживших. За рамками боевых условий
   отклонения от протоколов редки.</p>
 </div>
 
-<div class="ego">
+<div class="ego ego--danger">
+  <div>
   <div class="name">Мясник</div>
   <div class="trigger">триггер: угроза уничтожения, экстремальное насилие</div>
+  </div>
   <p>Полная потеря рассудка и контроля. Хаотичное уничтожение любого живого объекта
   в зоне прямой видимости. В этом состоянии зафиксирован тяжёлый инцидент:
-  <span class="hidden">ликвидация 5 гражданских лиц</span>. Нечувствителен к устным
+  <span class="hidden" tabindex="0">ликвидация 5 гражданских лиц</span>. Нечувствителен к устным
   приказам и стандартным тазерам.</p>
 </div>
 
@@ -290,40 +554,57 @@ td.accent { color: #d05a52; }
   Устные контакты и задержание стандартной дубинкой бесполезны.</p>
 </div>
 
-<h2><span class="idx">IV.</span>Служебный путь</h2>
+</section>
 
+<section class="chapter" aria-labelledby="history-title">
+<h2 id="history-title"><span class="idx">IV.</span>Служебный путь</h2>
+
+<div class="history-item">
 <h3><span class="year">01</span> &nbsp;Ранние годы</h3>
 <p>Родился в семье учёных, рано проявил выдающиеся способности. В начальной школе
 подвергся систематическому буллингу, что нанесло глубокую травму и запустило
 расщепление личности. После трёх лет занятий боксом и борьбой научился жёстко
 подавлять физических агрессоров. Сформировал собственное кредо: баланс ума и силы.</p>
+</div>
 
+<div class="history-item">
 <h3><span class="year">02</span> &nbsp;Сибирский контракт</h3>
 <p>Защитив докторскую, откликнулся на закрытый контракт Spunk-DShH Inc. в Сибири.
 Начал рядовым исследователем в вирусологическом секторе, быстро продвинулся
 и возглавил опыты над штаммом «Лемма».</p>
+</div>
 
+<div class="history-item">
 <h3><span class="year">03</span> &nbsp;Инцидент № 09478</h3>
 <p>Во время штатных тестов образцов Омега произошёл прорыв сдерживания: мутант разбил
 защитное бронестекло. До прибытия группы реагирования принял удар на себя, заблокировав
 шлюз, и получил тяжелейшие увечья. После реабилитации и киборгизации перевёлся в А.Р.Т.
 на должность инспектора, но прогрессирующее расстройство заставило покинуть службу.</p>
+</div>
 
+<div class="history-item">
 <h3><span class="year">04</span> &nbsp;Aurum Corp</h3>
 <p>В поисках технологий интеграции имплантов вступил в оборонный сектор Aurum Corp.
 Прошёл спецакадемию, зачислен в дивизион Phoenix, где координировал и лично участвовал
 в отражении штурмов Объединённого Союза Рейдеров.</p>
+</div>
 
+<div class="history-item">
 <h3><span class="year">05</span> &nbsp;M.W.A., настоящее время</h3>
 <p>Подписал эксклюзивный контракт с M.W.A. Занял должность заместителя отдела
 «Maelstrom». После продолжительной службы был выбран лидером отдела Военной Полиции,
 где прослужил около недели, после чего восстановлен на должности заместителя
 лидера «Maelstrom».</p>
+</div>
+</section>
+</main>
 
-<div class="foot">
+<footer class="foot">
   Канцелярия M.W.A. &nbsp;/&nbsp; дело № 102 &nbsp;/&nbsp; статус: активен
-</div>
+</footer>
 
 </div>
+
+
 </body>
 </html>
