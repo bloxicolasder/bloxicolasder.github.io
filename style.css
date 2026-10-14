@@ -90,6 +90,8 @@ h1 { margin: 0; font-family: var(--heading-font); font-weight: 600; line-height:
   margin: 16px 0 0;
   color: var(--muted);
 }
+.portrait-frame { display: block; padding: 6px; border: 1px solid #935d66; background: #190c11; cursor: zoom-in; }
+.portrait-frame:focus-visible { outline: 2px solid var(--foreground); outline-offset: 4px; }
 .portrait img { display: block; width: 100%; height: auto; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%); }
 .sign { padding: 10px 0 0; font-size: 14px; }
 table { width: 100%; border-collapse: collapse; }
@@ -124,8 +126,7 @@ h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
 .rate tr { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 12px; }
 .rate th, .rate td { display: block; padding: 0; }
 .rate th { color: #d0b9bf; line-height: 1.5; }
-.score-num { font: 500 48px/1 var(--heading-font); }
-.rate tr:last-child .score-num { font-weight: 600; color: #f1c7cf; }
+.score-num { font: 500 48px/1 var(--heading-font); color: var(--foreground); }
 .score-unit { display: block; margin-top: 12px; font-size: 14px; color: #d0b9bf; }
 .ego { display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr); gap: var(--column-gap); padding: 20px 0; }
 .name { font: 500 30px/1.2 var(--heading-font); margin-bottom: 12px; }
@@ -165,6 +166,7 @@ h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
   .given { font-size: 18px; margin-top: 12px; line-height: 1.4; }
   .alias { font-size: 14px; margin-top: 12px; }
   .portrait { width: 108px; margin-top: 4px; display: flow-root; }
+  .portrait-frame { padding: 4px; }
   .portrait img { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
   .sign { font-size: 14px; line-height: 1.4; white-space: nowrap; float: right; }
   .intro { margin-top: 24px; font-size: 15px; line-height: 1.75; }
