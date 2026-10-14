@@ -96,7 +96,7 @@ table { width: 100%; border-collapse: collapse; }
 th { text-align: left; vertical-align: top; font-size: 14px; font-weight: 400; color: var(--muted); }
 td { vertical-align: top; font-size: 16px; }
 .identity { grid-area: identity; align-self: end; }
-.identity th { width: 32%; padding: 8px 22px 8px 0; }
+.identity th { width: calc(var(--label-width) + var(--column-gap)); padding: 8px var(--column-gap) 8px 0; }
 .identity td { padding: 8px 0; font-size: 15px; }
 td.accent { color: #f1c7cf; }
 main { padding-top: 16px; }
@@ -116,7 +116,7 @@ p { margin: 0 0 20px; }
 h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
 .mod h3 { display: flex; gap: 8px; margin: 0; font-size: 18px; font-weight: 500; }
 .part-no { flex: none; font-weight: 400; color: #d9b6c0; }
-.model { white-space: nowrap; }
+.model, .keep-together { white-space: nowrap; }
 .mod p { margin: 0; color: #dbc8c8; }
 .performance { margin-top: 40px; padding: 24px 0; }
 .performance h3 { font-size: 16px; font-weight: 500; margin-bottom: 24px; }
@@ -147,10 +147,9 @@ h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
 
 @media (max-width: 960px) {
   .page { padding: 28px 36px; --label-width: 205px; --column-gap: 28px; }
-  .cover { grid-template-columns: minmax(0, 1fr) 260px; gap: 0 36px; }
+  .cover { grid-template-columns: minmax(0, 1fr) clamp(180px, 27vw, 240px); grid-template-areas: 'name portrait' 'intro portrait' 'identity identity'; gap: 0 28px; }
   .surname { font-size: 84px; }
   .given { font-size: 21px; }
-  .identity th { width: 35%; padding-right: 18px; }
   .rate tbody { gap: 20px; }
   .score-num { font-size: 38px; }
 }
@@ -169,8 +168,9 @@ h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
   .portrait img { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
   .sign { font-size: 14px; line-height: 1.4; white-space: nowrap; float: right; }
   .intro { margin-top: 24px; font-size: 15px; line-height: 1.75; }
-  .identity th { width: 35%; }
-  .identity td { font-size: 16px; }
+  .identity th, .identity td { display: block; width: 100%; padding: 0; }
+  .identity th { padding-top: 16px; padding-bottom: 5px; }
+  .identity td { padding-bottom: 12px; font-size: 16px; }
   .chapter { margin-bottom: 48px; }
   h2 { font-size: 27px; }
   .idx { font-size: 14px; }
@@ -179,8 +179,9 @@ h3 { margin: 0 0 10px; font: 600 19px/1.5 var(--body-font); }
   .chapter:first-child td { padding-bottom: 12px; }
   .mods { gap: 28px; }
   .rate tbody { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
-  .rate tr:last-child { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
-  .rate tr:last-child th { max-width: 145px; }
+  .rate tr:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 20px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .rate tr:last-child td { grid-column: 1; grid-row: 1; }
+  .rate tr:last-child th { grid-column: 2; grid-row: 1; }
   .mod, .ego, .history-item { grid-template-columns: 1fr; gap: 18px; }
   .ego { padding: 18px 0; }
   .name { font-size: 27px; margin-bottom: 9px; }
